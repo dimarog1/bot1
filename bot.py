@@ -40,11 +40,13 @@ async def help(ctx):
     emb = discord.Embed(title='Навигация по командам')
 
     emb.add_field(name='{}clear'.format('+'), value='Очистка чата')
-    emb.add_field(name='{}hello'.format('+'), value='Здрасте, ёпта')
-    emb.add_field(name='{}fox'.format('+'), value='Лиса нахуй')
-    emb.add_field(name='{}dog'.format('+'), value='Собака нахуй')
-    emb.add_field(name='{}mem'.format('+'), value='Мем нахуй')
-    emb.add_field(name='{}gif'.format('+'), value='Гифка нахуй')
+    emb.add_field(name='{}hello'.format('+'), value='Здрасте')
+    emb.add_field(name='{}fox'.format('+'), value='Лиса')
+    emb.add_field(name='{}dog'.format('+'), value='Собака')
+    emb.add_field(name='{}mem'.format('+'), value='Мем')
+    emb.add_field(name='{}gif'.format('+'), value='Гифка')
+    emb.add_field(name='{}j'.format('+'), value='Подключиться')
+    emb.add_field(name='{}p'.format('+'), value='Сыграть музыку (сейчас не работает)')
 
     await ctx.send(embed=emb)
 
@@ -57,7 +59,7 @@ async def fox(ctx):
     print(response.text)
     json_data = response.json()  # Извлекаем JSON
 
-    embed = discord.Embed(color=0xff9900, title='Лиса нахуй')  # Создание Embed'a
+    embed = discord.Embed(color=0xff9900, title='Лиса')  # Создание Embed'a
     embed.set_image(url=json_data['link'])  # Устанавливаем картинку Embed'a
     await ctx.send(embed=embed)  # Отправляем Embed
 
@@ -70,7 +72,7 @@ async def dog(ctx):
     print(response.text)
     json_data = response.json()  # Извлекаем JSON
 
-    embed = discord.Embed(color=0xff9900, title='Собака нахуй')  # Создание Embed'a
+    embed = discord.Embed(color=0xff9900, title='Собака')  # Создание Embed'a
     embed.set_image(url=json_data['link'])  # Устанавливаем картинку Embed'a
     await ctx.send(embed=embed)  # Отправляем Embed
 
@@ -83,7 +85,7 @@ async def mem(ctx):
     print(response.text)
     json_data = response.json()  # Извлекаем JSON
 
-    embed = discord.Embed(color=0xff9900, title='Мем нахуй')  # Создание Embed'a
+    embed = discord.Embed(color=0xff9900, title='Мем')  # Создание Embed'a
     embed.set_image(url=json_data['image'])  # Устанавливаем картинку Embed'a
     await ctx.send(embed=embed)  # Отправляем Embed
 
@@ -96,7 +98,7 @@ async def gif(ctx):
     print(response.text)
     json_data = response.json()  # Извлекаем JSON
 
-    embed = discord.Embed(color=0xff9900, title='Гифка нахуй')  # Создание Embed'a
+    embed = discord.Embed(color=0xff9900, title='Гифка')  # Создание Embed'a
     embed.set_image(url=json_data['link'])  # Устанавливаем картинку Embed'a
     await ctx.send(embed=embed)  # Отправляем Embed
 
@@ -135,10 +137,10 @@ async def l(ctx):
     if voice and voice.is_connected():
         await voice.disconnect()
         print(f'Бот вышел из {channel}')
-        await ctx.send(f'Съебал из {channel}')
+        await ctx.send(f'Вышел из {channel}')
     else:
         print('Bot was told to leave voice channel, but was not in one')
-        await ctx.send('Я не в канале, ебалаи...')
+        await ctx.send('Я не в канале')
 
 
 # Play
@@ -152,7 +154,7 @@ async def p(ctx, url: str, loudless=1):
             print('Перемещён старый файл музыки')
     except PermissionError:
         print('Пытаюсь удалить файл музыки, но пиздец')
-        await ctx.send('Пизда, не получилось сыграть')
+        await ctx.send('Не получилось сыграть')
         return
 
     await ctx.send('Заряжаю...')
@@ -183,7 +185,7 @@ async def p(ctx, url: str, loudless=1):
     voice.source.volume = loudless
 
     nname = name.rsplit('-', 2)
-    await ctx.send(f'Ебашу {nname}')
+    await ctx.send(f'Играю {nname}')
     print('Играю\n')
 
 

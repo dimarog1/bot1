@@ -190,6 +190,6 @@ async def p(ctx, url: str, loudless=1):
 # Connect
 
 
-token = 'NzcwOTk1NTY0NTI2NTY3NDY1.X5lrkg.DlnL7xJsCLWjNFQK2VjkHDJdYiQ'
+token = ''
 
 client.run(token)
